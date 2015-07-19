@@ -30,7 +30,7 @@
 
 
 <asp:Content ID="Content3" runat="server" contentplaceholderid="ContentPlaceHolder3">
-    <asp:Button ID="googleLogin" runat="server" OnClick="googleLogin_Click" Text="Google test" />
+    <asp:Button ID="googleLogin" runat="server" OnClick="googleLogin_Click" Text="Google test" CssClass="g-signin2" />
     <asp:Button ID="outlookButton" runat="server" OnClick="outlookButton_Click" Text="Outlook Test" />
     <asp:Label ID="tokenInfo" runat="server" Text="Label"></asp:Label>
     <asp:Literal ID="Literal2" runat="server"><br /></asp:Literal>

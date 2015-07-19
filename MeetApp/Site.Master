@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="1016818064699-m0kivmbto7isf1slt4b12uv6mgefbn0u.apps.googleusercontent.com">
     <meta charset="utf-8" />
     <title><%: Page.Title %> - My ASP.NET Application</title>
     <asp:PlaceHolder runat="server">     

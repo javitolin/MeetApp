@@ -11,9 +11,9 @@ using Google.Apis.Util.Store;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
+using Google.Apis.Auth.OAuth2.Flows;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
-using Google.Apis.Auth.OAuth2.Flows;
 namespace MeetApp
 {
     public partial class _Default : Page
@@ -22,7 +22,10 @@ namespace MeetApp
         string clientSecret = @"PM3f5oqE5l8UgOvw6NGqG_W5";
         string userName = "user";//  A string used to identify a user.
         string[] scopes = new string[] { 
-            CalendarService.Scope.CalendarReadonly // View your Calendars
+            // View your Calendars
+            CalendarService.Scope.CalendarReadonly,
+            Google.Apis.Oauth2.v2.Oauth2Service.Scope.UserinfoEmail,
+            Google.Apis.Oauth2.v2.Oauth2Service.Scope.UserinfoProfile
         };
         private static CalendarService service;
 
@@ -164,21 +167,26 @@ namespace MeetApp
             }
         }
 
+
+
+
         protected void googleLogin_Click(object sender, EventArgs e)
         {
-            UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(new ClientSecrets
-            {
+            // *** Register with Google ***
+            //Get auth from google
+            //Get credentials of user
+            //Save the credentials for later use
+            
+            UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                new ClientSecrets{
                 ClientId = clientId,
                 ClientSecret = clientSecret
-            },
+                }, 
                 scopes,
                 userName,
                 CancellationToken.None,
-                //new AuthStorageGoogle(@"C:\Users\Javier\documents\visual studio 2012\Projects\MeetApp\MeetApp\App_Data\MeetAppDB.mdf", "javitolin", "manajama12", "MeetAppDB", "userCredentials")).Result;
                 new AuthDataStorageFile(@"C:\Users\Javier\Documents\googleCredentials")).Result;
-
             googleGetCalendars(credential);
-
         }
 
         private void googleGetCalendars(UserCredential credential)
